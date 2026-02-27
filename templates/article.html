@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block title %}{% if article %}{{ article.title }}{% else %}Статья{% endif %} — Новостник{% endblock %}
+{% block content %}
+<article class="article-single">
+    {% if article %}
+    <h1>{{ article.title }}</h1>
+    <p class="article-meta">
+        {{ article.created_date.strftime('%d.%m.%Y') }}
+        {% if article.author %} · {{ article.author.name }}{% endif %}
+        {% if article.category %} · <a href="{{ url_for('articles_by_category', category=article.category) }}">{{ article.category }}</a>{% endif %}
+        {% if is_today(article.created_date) %} <span class="badge-new">Новое!</span>{% endif %}
+    </p>
+    <div class="article-body">{{ article.text }}</div>
+
+    <section class="comments-section">
+        <h2>Комментарии</h2>
+        {% for c in comments %}
+        <div class="comment">
+            <p class="comment-meta"><strong>{{ c.author_name }}</strong> · {{ c.date.strftime('%d.%m.%Y %H:%M') }}</p>
+            <p class="comment-text">{{ c.text }}</p>
+        </div>
+        {% endfor %}
+
+        <form method="post" action="{{ url_for('add_comment', id=article.id) }}" class="comment-form">
+            <div class="form-group">
+                <label for="author_name">Ваше имя</label>
+                <input type="text" id="author_name" name="author_name" required>
+            </div>
+            <div class="form-group">
+                <label for="comment_text">Комментарий</label>
+                <textarea id="comment_text" name="text" rows="3" required></textarea>
+            </div>
+            <button type="submit">Отправить</button>
+        </form>
+    </section>
+    {% else %}
+    <h1>Статья не найдена</h1>
+    <p>Статья с таким номером не найдена.</p>
+    {% endif %}
+</article>
+{% endblock %}

@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% block title %}{% if category %}{{ category }}{% endif %} Статьи — Новостник{% endblock %}
+{% block content %}
+<h1>{% if invalid_category %}Неверная категория "{{ category }}"{% elif category %}Категория: {{ category }}{% else %}Все статьи{% endif %}</h1>
+{% if invalid_category %}
+<p>Такой категории нет. <a href="{{ url_for('articles_list') }}">Перейти к списку всех статей</a>.</p>
+{% else %}
+{% if not category %}
+<form method="get" action="{{ url_for('articles_list') }}" class="search-form">
+    <input type="search" name="q" value="{{ search_query or '' }}" placeholder="Поиск по заголовку и тексту">
+    <button type="submit">Искать</button>
+</form>
+{% endif %}
+<p class="categories-links">
+    {% for cat in ['general', 'python', 'flask', 'web', 'news'] %}
+    <a href="{{ url_for('articles_by_category', category=cat) }}">{{ cat }}</a>{% if not loop.last %} · {% endif %}
+    {% endfor %}
+</p>
+<ul class="article-items">
+    {% for article in articles %}
+    <li class="article-item">
+        <a href="{{ url_for('article', id=article.id) }}">{{ article.title }}</a>
+        <span class="article-date">{{ article.created_date.strftime('%d.%m.%Y') }}</span>
+        {% if article.author %}<span class="article-author">{{ article.author.name }}</span>{% endif %}
+        {% if current_user.is_authenticated %}
+        <a href="{{ url_for('edit_article', id=article.id) }}" class="btn-edit">Изменить</a>
+        <form method="post" action="{{ url_for('delete_article', id=article.id) }}" class="inline-form" onsubmit="return confirm('Удалить статью?');">
+            <button type="submit" class="btn-delete">Удалить</button>
+        </form>
+        {% endif %}
+    </li>
+    {% endfor %}
+</ul>
+{% if pagination and pagination.pages > 1 %}
+<nav class="pagination">
+    {% if pagination.has_prev %}
+    {% if category %}
+    <a href="{{ url_for('articles_by_category', category=category, page=pagination.prev_num) }}">← Назад</a>
+    {% else %}
+    <a href="{{ url_for('articles_list', page=pagination.prev_num, q=search_query or '') }}">← Назад</a>
+    {% endif %}
+    {% endif %}
+    <span class="page-info">Стр. {{ pagination.page }} из {{ pagination.pages }}</span>
+    {% if pagination.has_next %}
+    {% if category %}
+    <a href="{{ url_for('articles_by_category', category=category, page=pagination.next_num) }}">Вперёд →</a>
+    {% else %}
+    <a href="{{ url_for('articles_list', page=pagination.next_num, q=search_query or '') }}">Вперёд →</a>
+    {% endif %}
+    {% endif %}
+</nav>
+{% endif %}
+{% if not articles and not invalid_category %}
+<p>В этой категории пока нет статей.{% if search_query %} По запросу «{{ search_query }}» ничего не найдено.{% endif %}</p>
+{% endif %}
+{% endif %}
+{% endblock %}

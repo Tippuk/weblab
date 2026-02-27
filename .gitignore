@@ -1,0 +1,20 @@
+# Flask
+app.py
+instance/
+.webassets-cache
+
+# SQLite
+*.db
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+.env
+
+# Frontend (Лаба 6)
+frontend/node_modules/
+frontend/dist/
+

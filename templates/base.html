@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Новостник{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <header class="site-header">
+        <div class="container">
+            <a href="{{ url_for('index') }}" class="logo-link">News Hub</a>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="{{ url_for('index') }}">Главная</a></li>
+                    <li><a href="{{ url_for('articles_list') }}">Статьи</a></li>
+                    {% if current_user.is_authenticated %}
+                    <li><a href="{{ url_for('create_article') }}">Создать статью</a></li>
+                    <li><a href="{{ url_for('logout') }}">Выйти</a></li>
+                    {% else %}
+                    <li><a href="{{ url_for('login') }}">Вход</a></li>
+                    <li><a href="{{ url_for('register') }}">Регистрация</a></li>
+                    {% endif %}
+                    <li><a href="{{ url_for('about') }}">О проекте</a></li>
+                    <li><a href="{{ url_for('contact') }}">Контакты</a></li>
+                    <li><a href="{{ url_for('feedback') }}">Обратная связь</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="container">
+            {% for category, message in get_flashed_messages(with_categories=true) %}
+            <div class="flash flash-{{ category }}">{{ message }}</div>
+            {% endfor %}
+            {% block content %}{% endblock %}
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <p>&copy; 2026 Новостник. Лабораторная работа по веб-технологиям.</p>
+        </div>
+    </footer>
+</body>
+</html>

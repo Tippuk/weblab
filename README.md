@@ -119,15 +119,3 @@ npm run dev
 ```
 
 Откройте http://localhost:5173 — запросы к `/api` проксируются на http://127.0.0.1:5000.
-
-### Git
-
-Репозиторий можно оформить так (если ещё не создан):
-
-```bash
-git init
-git add .
-git commit -m "Лабы 2–6: блог, API, JWT, фронтенд Vue"
-```
-
-В корне есть `.gitignore` (исключены `*.db`, `node_modules`, `frontend/dist` и т.п.).

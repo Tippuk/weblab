@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block title %}Главная — Новостник{% endblock %}
+{% block content %}
+<h1>Добро пожаловать в Новостник!</h1>
+
+<section class="articles-list">
+    <h2>Статьи</h2>
+    <ul class="article-items">
+        {% for article in articles %}
+        <li class="article-item">
+            <a href="{{ url_for('article', id=article.id) }}">
+                {{ article.title }}
+                <span class="article-date">{{ article.created_date.strftime('%d.%m.%Y') }}</span>
+                {% if is_today(article.created_date) %}
+                <span class="badge-new">Новое!</span>
+                {% endif %}
+            </a>
+        </li>
+        {% endfor %}
+    </ul>
+    {% if pagination and pagination.pages > 1 %}
+    <nav class="pagination">
+        {% if pagination.has_prev %}
+        <a href="{{ url_for('index', page=pagination.prev_num) }}">← Назад</a>
+        {% endif %}
+        <span class="page-info">Стр. {{ pagination.page }} из {{ pagination.pages }}</span>
+        {% if pagination.has_next %}
+        <a href="{{ url_for('index', page=pagination.next_num) }}">Вперёд →</a>
+        {% endif %}
+    </nav>
+    {% endif %}
+</section>
+{% endblock %}

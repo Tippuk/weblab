@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}Вход — Новостник{% endblock %}
+{% block content %}
+<h1>Вход</h1>
+<form method="post" action="{{ url_for('login') }}" class="auth-form">
+    <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" required>
+    </div>
+    <div class="form-group">
+        <label for="password">Пароль</label>
+        <input type="password" id="password" name="password" required>
+    </div>
+    <button type="submit">Войти</button>
+</form>
+<p>Нет аккаунта? <a href="{{ url_for('register') }}">Зарегистрироваться</a>.</p>
+{% endblock %}

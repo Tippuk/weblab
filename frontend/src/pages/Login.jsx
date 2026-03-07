@@ -29,19 +29,22 @@ export default function Login() {
   }
 
   return (
-    <div className="container auth-page">
-      <div className="auth-card">
-        <h1>Вход</h1>
+    <div className="auth-page">
+      <div className="auth-card-v2">
+        <div className="auth-card-header">
+          <h1>С возвращением</h1>
+          <p>Войдите в свой аккаунт</p>
+        </div>
 
         {error && <div className="alert alert-error">{error}</div>}
 
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className="auth-form">
           <div className="field">
             <label>Email</label>
             <input
               type="email" value={email}
               onChange={(e) => setEmail(e.target.value)}
-              placeholder="you@example.com" required
+              placeholder="name@company.com" required
             />
           </div>
           <div className="field">
@@ -52,16 +55,15 @@ export default function Login() {
               placeholder="••••••••" required
             />
           </div>
-          <button type="submit" className="btn btn-primary" style={{ width: '100%' }} disabled={loading}>
+          <button type="submit" className="btn btn-primary auth-btn" disabled={loading}>
             {loading ? 'Вхожу…' : 'Войти'}
           </button>
         </form>
 
-        <div className="divider" />
-        <p className="footer-link">
+        <p className="auth-footer">
           Нет аккаунта? <Link to="/register">Зарегистрироваться</Link>
         </p>
-        <p style={{ marginTop: '.5rem', fontSize: '.8rem', color: 'var(--text-light)', textAlign: 'center' }}>
+        <p className="auth-hint">
           Тестовые данные: admin@blog.local / admin
         </p>
       </div>

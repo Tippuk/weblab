@@ -113,21 +113,34 @@ export default function Home() {
         </div>
       ) : (
         <>
-          {!query && !category && page === 1 && featured && (
-            <Link to={`/article/${featured.id}`} className="featured-article" style={{ textDecoration: 'none' }}>
-              <div className={`featured-article-visual stripe-${featured.category || 'general'}`}>
-                <span className="featured-article-tag">{featured.category || 'general'}</span>
-              </div>
-              <div className="featured-article-content">
-                <span className="featured-label">Свежее</span>
-                <h2 className="featured-title">{featured.title}</h2>
-                <p className="featured-meta">{featured.author_name} · {featured.created_date && new Date(featured.created_date).toLocaleDateString('ru-RU')}</p>
-                <p className="featured-excerpt">
-                  {featured.text ? featured.text.slice(0, 200) + (featured.text.length > 200 ? '…' : '') : ''}
-                </p>
-              </div>
-            </Link>
-          )}
+          {(() => {
+            if (!query && !category && page === 1 && featured) {
+              const imgMatch = featured.text ? featured.text.match(/<img[^>]+src=(["'])(.*?)\1/) : null
+              const imgSrc = imgMatch ? imgMatch[2] : null
+
+              let cleanText = featured.text ? featured.text.replace(/<[^>]+>/g, ' ') : ''
+              cleanText = cleanText.replace(/https?:\/\/[^\s]+/g, '').trim()
+              const excerpt = cleanText.slice(0, 200) + (cleanText.length > 200 ? '…' : '')
+
+              return (
+                <Link to={`/article/${featured.id}`} className="featured-article" style={{ textDecoration: 'none' }}>
+                  <div
+                    className={`featured-article-visual stripe-${featured.category || 'general'}`}
+                    style={imgSrc ? { backgroundImage: `url(${imgSrc})`, backgroundSize: 'cover', backgroundPosition: 'center' } : {}}
+                  >
+                    {!imgSrc && <span className="featured-article-tag">{featured.category || 'general'}</span>}
+                  </div>
+                  <div className="featured-article-content">
+                    <span className="featured-label">Свежее</span>
+                    <h2 className="featured-title">{featured.title}</h2>
+                    <p className="featured-meta">{featured.author_name} · {featured.created_date && new Date(featured.created_date).toLocaleDateString('ru-RU')}</p>
+                    <p className="featured-excerpt">{excerpt}</p>
+                  </div>
+                </Link>
+              )
+            }
+            return null
+          })()}
 
           <div className="articles-grid">
             {((!query && !category && page === 1) ? rest : articles).map((a) => (

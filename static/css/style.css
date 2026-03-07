@@ -1,12 +1,17 @@
-/* Стилизация новостного блога (пункт C) */
-
 :root {
-    --color-bg: #f5f5f5;
-    --color-header: #2c3e50;
-    --color-accent: #3498db;
-    --color-text: #333;
-    --color-border: #ddd;
-    --font-main: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    --bg: #101922;
+    --surface: rgba(15, 23, 42, 0.5);
+    --surface-solid: #0f172a;
+    --surface-hover: #1e293b;
+    --primary: #137fec;
+    --primary-h: #1070d1;
+    --text: #f1f5f9;
+    --text-muted: #94a3b8;
+    --text-light: #64748b;
+    --border: #1e293b;
+    --error: #ef4444;
+    --success: #10b981;
+    --font-main: "Space Grotesk", system-ui, -apple-system, sans-serif;
 }
 
 * {
@@ -17,9 +22,19 @@ body {
     margin: 0;
     font-family: var(--font-main);
     font-size: 16px;
-    line-height: 1.5;
-    color: var(--color-text);
-    background: var(--color-bg);
+    line-height: 1.6;
+    color: var(--text);
+    background: var(--bg);
+    -webkit-font-smoothing: antialiased;
+}
+
+a {
+    color: var(--primary);
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
 }
 
 .container {
@@ -28,12 +43,16 @@ body {
     padding: 0 1rem;
 }
 
-/* Шапка и логотип */
+/* Шапка */
 .site-header {
-    background: var(--color-header);
-    color: #fff;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(16, 25, 34, 0.80);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
     padding: 1rem 0;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
 .logo-link {
@@ -44,7 +63,11 @@ body {
     color: #fff;
     text-decoration: none;
 }
-.logo-link:hover { color: #fff; opacity: .9; }
+
+.logo-link:hover {
+    color: #fff;
+    opacity: .9;
+}
 
 .main-nav ul {
     list-style: none;
@@ -56,14 +79,17 @@ body {
 }
 
 .main-nav a {
-    color: #fff;
+    color: var(--text-muted);
     text-decoration: none;
-    padding: 0.25rem 0;
+    padding: 0.3rem 0.5rem;
+    border-radius: 6px;
+    transition: color .2s, background .2s;
 }
 
 .main-nav a:hover {
-    text-decoration: underline;
-    color: var(--color-accent);
+    color: var(--primary);
+    background: rgba(19, 127, 236, 0.1);
+    text-decoration: none;
 }
 
 /* Контент */
@@ -74,13 +100,17 @@ body {
 
 h1 {
     font-size: 1.75rem;
-    color: var(--color-header);
+    color: var(--text);
     margin-top: 0;
+    font-weight: 800;
+    letter-spacing: -.02em;
 }
 
 h2 {
     font-size: 1.25rem;
     margin-bottom: 1rem;
+    color: var(--text);
+    font-weight: 700;
 }
 
 /* Список статей */
@@ -102,7 +132,7 @@ h2 {
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    color: var(--color-accent);
+    color: var(--primary);
     text-decoration: none;
     padding: 0.5rem 0;
 }
@@ -113,13 +143,13 @@ h2 {
 
 .article-date {
     font-size: 0.9rem;
-    color: #666;
+    color: var(--text-light);
     font-weight: normal;
 }
 
 .badge-new {
     display: inline-block;
-    background: #e74c3c;
+    background: var(--primary);
     color: #fff;
     font-size: 0.75rem;
     padding: 0.15rem 0.5rem;
@@ -136,10 +166,11 @@ h2 {
     display: block;
     margin-bottom: 0.35rem;
     font-weight: 600;
+    color: var(--text);
 }
 
 .required {
-    color: #c0392b;
+    color: #f87171;
 }
 
 .feedback-form input[type="text"],
@@ -147,11 +178,21 @@ h2 {
 .feedback-form textarea {
     width: 100%;
     max-width: 400px;
-    padding: 0.5rem 0.75rem;
+    padding: 0.6rem 0.85rem;
     font-family: inherit;
     font-size: 1rem;
-    border: 1px solid var(--color-border);
-    border-radius: 4px;
+    color: var(--text);
+    background: var(--surface-hover);
+    border: 1.5px solid var(--border);
+    border-radius: 8px;
+    outline: none;
+    transition: border-color .2s;
+}
+
+.feedback-form input:focus,
+.feedback-form textarea:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(19, 127, 236, .15);
 }
 
 .feedback-form textarea {
@@ -161,7 +202,7 @@ h2 {
 
 .feedback-form .error {
     display: block;
-    color: #c0392b;
+    color: #f87171;
     font-size: 0.9rem;
     margin-top: 0.25rem;
 }
@@ -169,22 +210,26 @@ h2 {
 .feedback-form button {
     padding: 0.6rem 1.5rem;
     font-size: 1rem;
-    background: var(--color-accent);
+    font-family: inherit;
+    background: var(--primary);
     color: #fff;
     border: none;
-    border-radius: 4px;
+    border-radius: 8px;
     cursor: pointer;
+    font-weight: 600;
+    transition: background .2s;
 }
 
 .feedback-form button:hover {
-    background: #2980b9;
+    background: var(--primary-h);
 }
 
 .feedback-success {
-    background: #e8f6f3;
-    border: 1px solid #1abc9c;
-    border-radius: 6px;
+    background: rgba(16, 185, 129, 0.1);
+    border: 1px solid rgba(16, 185, 129, 0.3);
+    border-radius: 8px;
     padding: 1.5rem;
+    color: #6ee7b7;
 }
 
 .submitted-data {
@@ -194,10 +239,12 @@ h2 {
 .submitted-data dt {
     font-weight: 600;
     margin-top: 0.5rem;
+    color: var(--text);
 }
 
 .submitted-data dd {
     margin: 0.25rem 0 0 1rem;
+    color: var(--text-muted);
 }
 
 /* Статья */
@@ -206,7 +253,7 @@ h2 {
 }
 
 .article-meta {
-    color: #666;
+    color: var(--text-light);
     font-size: 0.95rem;
     margin-bottom: 1.25rem;
 }
@@ -214,30 +261,33 @@ h2 {
 .article-body {
     line-height: 1.7;
     white-space: pre-line;
+    color: var(--text-muted);
 }
 
 /* Комментарии */
 .comments-section {
     margin-top: 2rem;
     padding-top: 1.5rem;
-    border-top: 1px solid var(--color-border);
+    border-top: 1px solid var(--border);
 }
 
 .comment {
     margin-bottom: 1rem;
-    padding: 0.75rem;
-    background: #f9f9f9;
-    border-radius: 4px;
+    padding: 0.85rem 1rem;
+    background: var(--surface-hover);
+    border: 1px solid var(--border);
+    border-radius: 8px;
 }
 
 .comment-meta {
     font-size: 0.9rem;
-    color: #666;
+    color: var(--text-light);
     margin-bottom: 0.25rem;
 }
 
 .comment-text {
     margin: 0;
+    color: var(--text-muted);
 }
 
 .comment-form {
@@ -252,38 +302,71 @@ h2 {
     display: block;
     margin-bottom: 0.35rem;
     font-weight: 600;
+    color: var(--text);
 }
 
 .comment-form input,
 .comment-form textarea {
     width: 100%;
     max-width: 400px;
-    padding: 0.5rem 0.75rem;
+    padding: 0.6rem 0.85rem;
     font-family: inherit;
     font-size: 1rem;
-    border: 1px solid var(--color-border);
-    border-radius: 4px;
+    color: var(--text);
+    background: var(--surface-hover);
+    border: 1.5px solid var(--border);
+    border-radius: 8px;
+    outline: none;
+    transition: border-color .2s;
+}
+
+.comment-form input:focus,
+.comment-form textarea:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(19, 127, 236, .15);
 }
 
 .comment-form button {
     padding: 0.5rem 1.25rem;
-    background: var(--color-accent);
+    background: var(--primary);
     color: #fff;
     border: none;
-    border-radius: 4px;
+    border-radius: 8px;
     cursor: pointer;
+    font-family: inherit;
+    font-weight: 600;
+    transition: background .2s;
 }
 
-/* Сообщения flash */
+.comment-form button:hover {
+    background: var(--primary-h);
+}
+
+/* Flash-сообщения */
 .flash {
     padding: 0.75rem 1rem;
     margin-bottom: 1rem;
-    border-radius: 4px;
+    border-radius: 8px;
+    border-left: 4px solid transparent;
 }
 
-.flash-success { background: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
-.flash-error { background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
-.flash-info { background: #d1ecf1; color: #0c5460; border: 1px solid #bee5eb; }
+.flash-success {
+    background: rgba(16, 185, 129, 0.1);
+    color: #6ee7b7;
+    border-color: var(--success);
+}
+
+.flash-error {
+    background: rgba(239, 68, 68, 0.1);
+    color: #fca5a5;
+    border-color: var(--error);
+}
+
+.flash-info {
+    background: rgba(19, 127, 236, 0.1);
+    color: #93c5fd;
+    border-color: var(--primary);
+}
 
 /* Формы статей и авторизации */
 .article-form .form-group,
@@ -296,6 +379,7 @@ h2 {
     display: block;
     margin-bottom: 0.35rem;
     font-weight: 600;
+    color: var(--text);
 }
 
 .article-form input,
@@ -304,11 +388,23 @@ h2 {
 .auth-form input {
     width: 100%;
     max-width: 500px;
-    padding: 0.5rem 0.75rem;
+    padding: 0.6rem 0.85rem;
     font-family: inherit;
     font-size: 1rem;
-    border: 1px solid var(--color-border);
-    border-radius: 4px;
+    color: var(--text);
+    background: var(--surface-hover);
+    border: 1.5px solid var(--border);
+    border-radius: 8px;
+    outline: none;
+    transition: border-color .2s;
+}
+
+.article-form input:focus,
+.article-form textarea:focus,
+.article-form select:focus,
+.auth-form input:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(19, 127, 236, .15);
 }
 
 .article-form textarea {
@@ -320,32 +416,41 @@ h2 {
 .auth-form button {
     padding: 0.6rem 1.5rem;
     font-size: 1rem;
-    background: var(--color-accent);
+    font-family: inherit;
+    font-weight: 600;
+    background: var(--primary);
     color: #fff;
     border: none;
-    border-radius: 4px;
+    border-radius: 8px;
     cursor: pointer;
     margin-right: 0.5rem;
+    transition: background .2s;
+}
+
+.article-form button:hover,
+.auth-form button:hover {
+    background: var(--primary-h);
 }
 
 .btn-cancel {
-    color: #666;
+    color: var(--text-muted);
     text-decoration: none;
     font-size: 1rem;
 }
 
 .btn-cancel:hover {
     text-decoration: underline;
+    color: var(--primary);
 }
 
-/* Список статей: категории, кнопки */
+/* Категории, кнопки */
 .categories-links {
     margin-bottom: 1rem;
-    color: #666;
+    color: var(--text-light);
 }
 
 .categories-links a {
-    color: var(--color-accent);
+    color: var(--primary);
 }
 
 .article-item {
@@ -355,36 +460,41 @@ h2 {
     gap: 0.5rem 1rem;
 }
 
-.article-item > a:first-of-type {
+.article-item>a:first-of-type {
     flex: 0 0 auto;
 }
 
 .article-author {
     font-size: 0.9rem;
-    color: #666;
+    color: var(--text-light);
 }
 
 .btn-edit {
     font-size: 0.9rem;
-    color: var(--color-accent);
+    color: var(--primary);
     margin-left: auto;
 }
 
 .btn-delete {
-    padding: 0.25rem 0.5rem;
+    padding: 0.25rem 0.6rem;
     font-size: 0.85rem;
-    background: #e74c3c;
+    background: var(--error);
     color: #fff;
     border: none;
-    border-radius: 4px;
+    border-radius: 6px;
     cursor: pointer;
+    transition: background .2s;
+}
+
+.btn-delete:hover {
+    background: #dc2626;
 }
 
 .inline-form {
     display: inline;
 }
 
-/* Пагинация и поиск (Лаба 4) */
+/* Пагинация и поиск */
 .pagination {
     margin-top: 1.5rem;
     display: flex;
@@ -393,7 +503,7 @@ h2 {
 }
 
 .pagination a {
-    color: var(--color-accent);
+    color: var(--primary);
     text-decoration: none;
 }
 
@@ -402,7 +512,7 @@ h2 {
 }
 
 .page-info {
-    color: #666;
+    color: var(--text-light);
     font-size: 0.95rem;
 }
 
@@ -413,29 +523,47 @@ h2 {
 }
 
 .search-form input[type="search"] {
-    padding: 0.5rem 0.75rem;
+    padding: 0.6rem 0.85rem;
     font-size: 1rem;
-    border: 1px solid var(--color-border);
-    border-radius: 4px;
+    font-family: inherit;
+    color: var(--text);
+    background: var(--surface-hover);
+    border: 1.5px solid var(--border);
+    border-radius: 8px;
     min-width: 200px;
+    outline: none;
+    transition: border-color .2s;
+}
+
+.search-form input:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(19, 127, 236, .15);
 }
 
 .search-form button {
     padding: 0.5rem 1rem;
-    background: var(--color-accent);
+    background: var(--primary);
     color: #fff;
     border: none;
-    border-radius: 4px;
+    border-radius: 8px;
     cursor: pointer;
+    font-family: inherit;
+    font-weight: 600;
+    transition: background .2s;
+}
+
+.search-form button:hover {
+    background: var(--primary-h);
 }
 
 /* Подвал */
 .site-footer {
-    background: var(--color-header);
-    color: #aaa;
+    background: var(--surface-solid);
+    color: var(--text-light);
     padding: 1rem 0;
     margin-top: 2rem;
     font-size: 0.9rem;
+    border-top: 1px solid var(--border);
 }
 
 .site-footer p {

@@ -9,7 +9,7 @@ function getBadgeClass(cat) {
 
 function getStripeClass(cat) {
   const c = CATEGORIES.includes(cat) ? cat : 'general'
-  return `article-card-top stripe-${c}`
+  return `stripe-${c}`
 }
 
 function formatDate(iso) {
@@ -18,11 +18,21 @@ function formatDate(iso) {
 }
 
 export default function ArticleCard({ article }) {
-  const excerpt = article.text ? article.text.slice(0, 160) + (article.text.length > 160 ? '…' : '') : ''
+  // Extract image
+  const imgMatch = article.text ? article.text.match(/<img[^>]+src=(["'])(.*?)\1/) : null
+  const imgSrc = imgMatch ? imgMatch[2] : null
+
+  // Очищаем текст и удаляем ссылку на картинку
+  let cleanText = article.text ? article.text.replace(/<[^>]+>/g, ' ') : ''
+  cleanText = cleanText.replace(/https?:\/\/[^\s]+/g, '').trim()
+
+  const excerpt = cleanText.slice(0, 160) + (cleanText.length > 160 ? '…' : '')
 
   return (
     <Link to={`/article/${article.id}`} className="article-card">
-      <div className={getStripeClass(article.category)} />
+      <div className={`article-card-top ${getStripeClass(article.category)}`} style={imgSrc ? { backgroundImage: `url(${imgSrc})`, backgroundSize: 'cover', backgroundPosition: 'center' } : {}}>
+        {!imgSrc && <div className="article-card-placeholder"></div>}
+      </div>
       <div className="article-card-body">
         <div className="tag-row">
           <span className={getBadgeClass(article.category)}>{article.category || 'general'}</span>

@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#137fec",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101922",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<title>TechPortal | Professional IT News</title>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 antialiased">
+<div class="relative flex min-h-screen w-full flex-col overflow-x-hidden">
+<header class="sticky top-0 z-50 w-full border-b border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-background-dark/80 backdrop-blur-md px-4 md:px-10 py-3">
+<div class="max-w-7xl mx-auto flex items-center justify-between gap-8">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-2 text-primary">
+<span class="material-symbols-outlined text-3xl font-bold">terminal</span>
+<h2 class="text-slate-900 dark:text-slate-100 text-xl font-bold leading-tight tracking-tight">TechPortal</h2>
+</div>
+<nav class="hidden lg:flex items-center gap-6">
+<a class="text-primary text-sm font-semibold border-b-2 border-primary pb-1" href="#">Feed</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-primary dark:hover:text-primary text-sm font-medium transition-colors" href="#">Hubs</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-primary dark:hover:text-primary text-sm font-medium transition-colors" href="#">Companies</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-primary dark:hover:text-primary text-sm font-medium transition-colors" href="#">Events</a>
+</nav>
+</div>
+<div class="flex flex-1 justify-end items-center gap-4">
+<div class="hidden md:flex relative w-full max-w-xs">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-xl">search</span>
+<input class="w-full bg-slate-100 dark:bg-slate-800 border-none rounded-lg py-2 pl-10 pr-4 text-sm focus:ring-2 focus:ring-primary placeholder:text-slate-500" placeholder="Search articles, tags..." type="text"/>
+</div>
+<div class="flex items-center gap-2">
+<button class="p-2 rounded-lg bg-slate-100 dark:bg-slate-800 text-primary transition-colors hover:bg-primary/10">
+<span class="material-symbols-outlined fill-1">dark_mode</span>
+</button>
+<button class="p-2 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<div class="h-8 w-[1px] bg-slate-200 dark:border-slate-800 mx-1"></div>
+<div class="h-10 w-10 rounded-full border-2 border-primary/20 p-0.5">
+<div class="h-full w-full rounded-full bg-center bg-cover" data-alt="User profile avatar portrait" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAvI4SvkmoLVyEiCd2-Kk045jJPHy8ecZlwhqdNvLtsxECQeD9j_6xSEvG0adRgsyDzacbtM4LRIwDK3djLv32EHIof4r2ekOriHbrgoLqz9S7mPf_o9DC23S8uKgK9PHImnrSWAeSaefTLjj2p2cdAnRc13wJT8yXrL3ouXO7DPebWDS07rlNhZUDqMH2s0Ad1cNDxr4-bfsLpiIOHEX3KjLZzGO5bwsOZUPTQnoiSRf2aXLLGqGDW75xNj3E3b1KSQUp67bNoZNY')"></div>
+</div>
+</div>
+</div>
+</div>
+</header>
+<main class="max-w-7xl mx-auto w-full px-4 md:px-10 py-8 grid grid-cols-1 lg:grid-cols-12 gap-8">
+<aside class="hidden lg:flex lg:col-span-2 flex-col gap-6">
+<div class="flex flex-col gap-1">
+<h3 class="text-xs font-bold uppercase tracking-wider text-slate-500 mb-2">Navigation</h3>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg bg-primary/10 text-primary font-semibold" href="#">
+<span class="material-symbols-outlined text-xl">rss_feed</span>
+<span class="text-sm">All Stream</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors" href="#">
+<span class="material-symbols-outlined text-xl">trending_up</span>
+<span class="text-sm">Trending</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors" href="#">
+<span class="material-symbols-outlined text-xl">star</span>
+<span class="text-sm">Bookmarks</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors" href="#">
+<span class="material-symbols-outlined text-xl">work</span>
+<span class="text-sm">Career</span>
+</a>
+</div>
+<div class="h-px bg-slate-200 dark:bg-slate-800 w-full"></div>
+<div class="flex flex-col gap-1">
+<h3 class="text-xs font-bold uppercase tracking-wider text-slate-500 mb-2">My Hubs</h3>
+<a class="text-sm px-3 py-1.5 text-slate-600 dark:text-slate-400 hover:text-primary transition-colors" href="#">#javascript</a>
+<a class="text-sm px-3 py-1.5 text-slate-600 dark:text-slate-400 hover:text-primary transition-colors" href="#">#devops</a>
+<a class="text-sm px-3 py-1.5 text-slate-600 dark:text-slate-400 hover:text-primary transition-colors" href="#">#cybersecurity</a>
+<a class="text-sm px-3 py-1.5 text-slate-600 dark:text-slate-400 hover:text-primary transition-colors" href="#">#rust</a>
+</div>
+</aside>
+<section class="lg:col-span-7 flex flex-col gap-6">
+<div class="flex items-center gap-4 border-b border-slate-200 dark:border-slate-800 pb-1 overflow-x-auto whitespace-nowrap scrollbar-hide">
+<button class="pb-3 px-1 text-sm font-bold border-b-2 border-primary text-slate-900 dark:text-slate-100">Recommended</button>
+<button class="pb-3 px-1 text-sm font-medium text-slate-500 hover:text-slate-700 dark:hover:text-slate-300 transition-colors">Recent</button>
+<button class="pb-3 px-1 text-sm font-medium text-slate-500 hover:text-slate-700 dark:hover:text-slate-300 transition-colors">Top Rated</button>
+<button class="pb-3 px-1 text-sm font-medium text-slate-500 hover:text-slate-700 dark:hover:text-slate-300 transition-colors">Editorial</button>
+</div>
+<article class="group bg-white dark:bg-slate-900/50 rounded-xl border border-slate-200 dark:border-slate-800 overflow-hidden hover:border-primary/50 transition-all duration-300">
+<div class="p-6">
+<div class="flex items-center gap-3 mb-4">
+<div class="h-8 w-8 rounded-lg bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-lg">shield</span>
+</div>
+<span class="text-xs font-bold text-primary uppercase tracking-widest">Cybersecurity</span>
+<span class="text-slate-400 dark:text-slate-600">•</span>
+<span class="text-xs text-slate-500">12 min read</span>
+</div>
+<h2 class="text-2xl font-bold leading-tight mb-3 group-hover:text-primary transition-colors">
+                            The Future of Quantum Computing in Enterprise Security
+                        </h2>
+<p class="text-slate-600 dark:text-slate-400 leading-relaxed mb-6 line-clamp-2">
+                            Exploring how post-quantum cryptography is shaping the next decade of data protection. As Shor's algorithm becomes a viable threat, enterprises are racing to update their encryption standards.
+                        </p>
+<div class="w-full h-64 rounded-lg bg-slate-100 dark:bg-slate-800 mb-6 bg-cover bg-center" data-alt="Abstract digital quantum computing visualization" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCY9rSQxLcPixCzktZTJOCpK7x8YpxbA0f46xcn8GsfrCUWYJclgq575W_nqA5E-dHAATLg1VQVq6mffyffJIWH4U8xhV2yTeMZESsALy-H5o9pwI84ms_0sc5GYaF6ngwRc7XA3_ZqSlh5KfkBccWcIKHfWkgIDRqSux691n_ONM5oHc4QxWaq10X3Ar0cAOK3_NRymEhknpvatU2ZOmFwEu9WGOEqNaO0p0ynXJtpR8OXQQtPMUbR1tVnijMigHpho77ZF-5Wc58')"></div>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-4">
+<button class="flex items-center gap-1.5 text-slate-500 hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-xl">thumb_up</span>
+<span class="text-sm font-semibold">1.2k</span>
+</button>
+<button class="flex items-center gap-1.5 text-slate-500 hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-xl">chat_bubble</span>
+<span class="text-sm font-semibold">56</span>
+</button>
+<button class="flex items-center gap-1.5 text-slate-500 hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-xl">bookmark</span>
+</button>
+</div>
+<div class="flex items-center gap-2 text-slate-500">
+<div class="h-6 w-6 rounded-full bg-slate-200 dark:bg-slate-700 bg-cover bg-center" data-alt="Author profile avatar" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuC0BzV4VMm04-O0KXlI4furScTlBvKKvpjUBDSOlZF1cd_W6kvuJW3pJYV2W-SQzd5Hu5VHBuVKd-9EOHlxnHVg03i28K_jfIZGFsdtVhykLqDCKvB32yA-496UPith_1KG_O3AU2BBCgG4QdioBUMk8m0eCS4lYagk2EbCgpk0Y8HfH4Kf-nVDV0uk95dlnIbo9hjB12lCuttyKGQFqY9vQpNF2vS7C29Zhomwo1TBbkJ1cdZXJbZCI7HIPphCCIVgZ45wg697x5w')"></div>
+<span class="text-xs font-medium">Alex Chen</span>
+</div>
+</div>
+</div>
+</article>
+<article class="bg-white dark:bg-slate-900/50 rounded-xl border border-slate-200 dark:border-slate-800 p-6 hover:border-primary/50 transition-all duration-300">
+<div class="flex gap-6">
+<div class="flex-1">
+<div class="flex items-center gap-3 mb-3">
+<span class="text-xs font-bold text-emerald-500 uppercase tracking-widest">DevOps</span>
+<span class="text-slate-400 dark:text-slate-600">•</span>
+<span class="text-xs text-slate-500">8 min read</span>
+</div>
+<h2 class="text-xl font-bold leading-tight mb-2 hover:text-primary cursor-pointer transition-colors">
+                                Kubernetes 1.29: Key Features Every Developer Should Know
+                            </h2>
+<p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-4 line-clamp-2">
+                                From sidecar containers to enhanced security profiles, we dive deep into the latest stable release of the container orchestration giant.
+                            </p>
+<div class="flex items-center gap-4">
+<span class="flex items-center gap-1 text-slate-500 text-xs font-semibold">
+<span class="material-symbols-outlined text-base">visibility</span> 4.5k
+                                </span>
+<span class="flex items-center gap-1 text-slate-500 text-xs font-semibold">
+<span class="material-symbols-outlined text-base">comment</span> 23
+                                </span>
+</div>
+</div>
+<div class="hidden sm:block w-32 h-32 rounded-lg bg-slate-100 dark:bg-slate-800 flex-shrink-0 bg-cover bg-center" data-alt="Blue technical grid pattern for kubernetes" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCUVRzKllbZE_F7Uh_CFBzJKW0XrrcgGmjq02L6jXhUEwXN6AYvjcfTfTbhd7JZS0jb3MLUJ1EnZFthrfDYwBcCzWG1nAGKaYx7aPNARCvDhK8Ge2PkAbvk__9BPzpqLwEYxGucYUkOGnRjUy-ye-msXJg7OPDwcY4Kb1NslU6luCWhDjBrsAbFmN5acGM7aDGx9aix7eYVBOffSWhqph4sJxBhibU7qCJVXXg2i1IlsxjkP5CYWDeDZ-_YFjHx8gXHwWGcqpN5zTE')"></div>
+</div>
+</article>
+<article class="bg-white dark:bg-slate-900/50 rounded-xl border border-slate-200 dark:border-slate-800 p-6 hover:border-primary/50 transition-all duration-300">
+<div class="flex gap-6">
+<div class="flex-1">
+<div class="flex items-center gap-3 mb-3">
+<span class="text-xs font-bold text-amber-500 uppercase tracking-widest">Career</span>
+<span class="text-slate-400 dark:text-slate-600">•</span>
+<span class="text-xs text-slate-500">15 min read</span>
+</div>
+<h2 class="text-xl font-bold leading-tight mb-2 hover:text-primary cursor-pointer transition-colors">
+                                The Rise of the 'Full-Stack' AI Engineer
+                            </h2>
+<p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-4 line-clamp-2">
+                                How LLMs are changing the definition of seniority in software engineering and what skills you need to stay relevant in 2024.
+                            </p>
+<div class="flex items-center gap-4">
+<span class="flex items-center gap-1 text-slate-500 text-xs font-semibold">
+<span class="material-symbols-outlined text-base">visibility</span> 8.2k
+                                </span>
+<span class="flex items-center gap-1 text-slate-500 text-xs font-semibold">
+<span class="material-symbols-outlined text-base">comment</span> 89
+                                </span>
+</div>
+</div>
+<div class="hidden sm:block w-32 h-32 rounded-lg bg-slate-100 dark:bg-slate-800 flex-shrink-0 bg-cover bg-center" data-alt="Modern office desk with AI interface" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCRlB8hIFPJeCcwI6H8J0fQGrNmurEyzb6KI6X7PVvYyMMNsqVzog48N8FXZNK5hBP6_FQIDkXtap19zV201cIDzf9y7LJa1-4J6WV9BTQ1bP4mEouGNP6dOwXsMTYPmRyRDc4EjPCvQqwfPT4oJakFjADnbQn_1oS_na0zL0nfuzTbKdxwCJBZkxs83WqDbU6zBBNCg73t6Uq4x7-2aRuYrebAjb35Ql2-QCjL_nZk4wcoY6xF5TKxe-3W6SMnkmK7_wIVOzcz-rw')"></div>
+</div>
+</article>
+</section>
+<aside class="hidden lg:flex lg:col-span-3 flex-col gap-8">
+<div class="bg-white dark:bg-slate-900/50 rounded-xl border border-slate-200 dark:border-slate-800 p-5">
+<div class="flex items-center justify-between mb-4">
+<h3 class="font-bold text-slate-900 dark:text-slate-100 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">local_fire_department</span>
+                            Trending Now
+                        </h3>
+</div>
+<ul class="flex flex-col gap-4">
+<li class="flex flex-col gap-1">
+<a class="text-sm font-semibold hover:text-primary transition-colors leading-snug line-clamp-2" href="#">How we migrated 50TB of data with zero downtime</a>
+<span class="text-[10px] text-slate-500 uppercase font-bold tracking-wider">Storage • 154 comments</span>
+</li>
+<li class="flex flex-col gap-1">
+<a class="text-sm font-semibold hover:text-primary transition-colors leading-snug line-clamp-2" href="#">Rust vs Go: The 2024 performance showdown</a>
+<span class="text-[10px] text-slate-500 uppercase font-bold tracking-wider">Languages • 312 comments</span>
+</li>
+<li class="flex flex-col gap-1">
+<a class="text-sm font-semibold hover:text-primary transition-colors leading-snug line-clamp-2" href="#">Why your Scrum is actually 'Waterfall in disguise'</a>
+<span class="text-[10px] text-slate-500 uppercase font-bold tracking-wider">Agile • 87 comments</span>
+</li>
+</ul>
+<button class="w-full mt-6 py-2 text-xs font-bold text-primary bg-primary/10 rounded-lg hover:bg-primary/20 transition-colors">
+                        View More Trends
+                    </button>
+</div>
+<div class="bg-white dark:bg-slate-900/50 rounded-xl border border-slate-200 dark:border-slate-800 p-5">
+<h3 class="font-bold text-slate-900 dark:text-slate-100 mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">calendar_month</span>
+                        Upcoming Events
+                    </h3>
+<div class="flex flex-col gap-4">
+<div class="flex items-start gap-3">
+<div class="flex flex-col items-center justify-center bg-slate-100 dark:bg-slate-800 rounded-lg h-12 w-12 flex-shrink-0">
+<span class="text-[10px] font-bold text-slate-500 uppercase">Oct</span>
+<span class="text-lg font-bold text-primary -mt-1">24</span>
+</div>
+<div>
+<h4 class="text-sm font-bold leading-tight">DevConf 2024</h4>
+<p class="text-xs text-slate-500 mt-1">Virtual Conference</p>
+</div>
+</div>
+<div class="flex items-start gap-3">
+<div class="flex flex-col items-center justify-center bg-slate-100 dark:bg-slate-800 rounded-lg h-12 w-12 flex-shrink-0">
+<span class="text-[10px] font-bold text-slate-500 uppercase">Nov</span>
+<span class="text-lg font-bold text-primary -mt-1">02</span>
+</div>
+<div>
+<h4 class="text-sm font-bold leading-tight">Rust Warsaw Meetup</h4>
+<p class="text-xs text-slate-500 mt-1">Warsaw, Poland</p>
+</div>
+</div>
+</div>
+</div>
+<div class="rounded-xl bg-gradient-to-br from-primary to-blue-700 p-6 text-white shadow-lg shadow-primary/20">
+<h3 class="text-lg font-bold mb-2">Upgrade to Pro</h3>
+<p class="text-sm text-white/80 mb-4 leading-relaxed">Get ad-free browsing, early access to editorial pieces, and detailed salary reports.</p>
+<button class="w-full py-2.5 bg-white text-primary rounded-lg font-bold text-sm hover:bg-opacity-90 transition-all">
+                        Get Started
+                    </button>
+</div>
+<div class="px-2">
+<div class="flex flex-wrap gap-x-4 gap-y-2 text-[11px] text-slate-500 font-medium">
+<a class="hover:text-primary transition-colors" href="#">About</a>
+<a class="hover:text-primary transition-colors" href="#">Privacy</a>
+<a class="hover:text-primary transition-colors" href="#">Terms</a>
+<a class="hover:text-primary transition-colors" href="#">Contact</a>
+<a class="hover:text-primary transition-colors" href="#">Advertising</a>
+</div>
+<p class="text-[11px] text-slate-600 mt-4">© 2024 TechPortal Media Group</p>
+</div>
+</aside>
+</main>
+</div>
+</body></html>

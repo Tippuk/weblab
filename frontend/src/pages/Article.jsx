@@ -74,7 +74,7 @@ export default function Article() {
         <div className="skeleton" style={{ height: 28, width: '30%', marginBottom: '1rem' }} />
         <div className="skeleton" style={{ height: 48, width: '85%', marginBottom: '.75rem' }} />
         <div className="skeleton" style={{ height: 20, width: '50%', marginBottom: '2rem' }} />
-        {[1,2,3].map(i => <div key={i} className="skeleton" style={{ height: 16, marginBottom: '.6rem' }} />)}
+        {[1, 2, 3].map(i => <div key={i} className="skeleton" style={{ height: 16, marginBottom: '.6rem' }} />)}
       </div>
     )
   }
@@ -124,7 +124,7 @@ export default function Article() {
       </header>
 
       <div className="article-divider" />
-      <div className="article-page-body">{article.text}</div>
+      <div className="article-page-body" dangerouslySetInnerHTML={{ __html: article.text }} />
 
       <section className="comments-section">
         <h2>Комментарии ({comments.length})</h2>

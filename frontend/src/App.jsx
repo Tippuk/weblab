@@ -8,8 +8,6 @@ import Register from './pages/Register'
 import CreateArticle from './pages/CreateArticle'
 import EditArticle from './pages/EditArticle'
 import About from './pages/About'
-import Contact from './pages/Contact'
-import Feedback from './pages/Feedback'
 
 function ProtectedRoute({ children }) {
   const { user } = useAuth()
@@ -25,8 +23,8 @@ export default function App() {
           <Route path="/" element={<Home />} />
           <Route path="/article/:id" element={<Article />} />
           <Route path="/about" element={<About />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/feedback" element={<Feedback />} />
+          <Route path="/contact" element={<Navigate to="/about" replace />} />
+          <Route path="/feedback" element={<Navigate to="/about" replace />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route
@@ -50,7 +48,7 @@ export default function App() {
       </main>
       <footer className="footer">
         <div className="container">
-          <p>© 2026 Новостник — Лабораторные работы по веб-технологиям</p>
+          <p>© 2026 Новостник — Статьи с хабра</p>
         </div>
       </footer>
     </div>

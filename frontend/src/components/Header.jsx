@@ -1,11 +1,25 @@
+import { useState, useRef, useEffect } from 'react'
 import { NavLink, Link, useNavigate } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
 
 export default function Header() {
   const { user, logout } = useAuth()
   const navigate = useNavigate()
+  const [menuOpen, setMenuOpen] = useState(false)
+  const menuRef = useRef(null)
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (menuRef.current && !menuRef.current.contains(event.target)) {
+        setMenuOpen(false)
+      }
+    }
+    document.addEventListener('mousedown', handleClickOutside)
+    return () => document.removeEventListener('mousedown', handleClickOutside)
+  }, [])
 
   const handleLogout = () => {
+    setMenuOpen(false)
     logout()
     navigate('/')
   }
@@ -24,12 +38,6 @@ export default function Header() {
           <NavLink to="/about" className={({ isActive }) => 'nav-link' + (isActive ? ' active' : '')}>
             О проекте
           </NavLink>
-          <NavLink to="/contact" className={({ isActive }) => 'nav-link' + (isActive ? ' active' : '')}>
-            Контакты
-          </NavLink>
-          <NavLink to="/feedback" className={({ isActive }) => 'nav-link' + (isActive ? ' active' : '')}>
-            Обратная связь
-          </NavLink>
           {user && (
             <NavLink to="/create" className={({ isActive }) => 'nav-link' + (isActive ? ' active' : '')}>
               + Статья
@@ -39,15 +47,28 @@ export default function Header() {
 
         <div className="header-user">
           {user ? (
-            <>
-              <div className="header-avatar" title={user.name}>
+            <div className="user-dropdown" ref={menuRef}>
+              <div
+                className="header-avatar"
+                title={user.name}
+                onClick={() => setMenuOpen(!menuOpen)}
+              >
                 {user.name[0].toUpperCase()}
               </div>
-              <span style={{ fontSize: '.9rem' }}>{user.name}</span>
-              <button className="btn-ghost" onClick={handleLogout}>
-                Выйти
-              </button>
-            </>
+
+              {menuOpen && (
+                <div className="user-menu">
+                  <div className="user-menu-info">
+                    <strong>{user.name}</strong>
+                    <span>{user.email}</span>
+                  </div>
+                  <div className="user-menu-divider"></div>
+                  <button className="user-menu-btn" onClick={handleLogout}>
+                    Выйти
+                  </button>
+                </div>
+              )}
+            </div>
           ) : (
             <>
               <NavLink to="/login" className="nav-link">
